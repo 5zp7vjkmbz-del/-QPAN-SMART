@@ -1,32 +1,461 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QPAN SMART 2026</title>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QPAN SMART 2026</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font:15px system-ui;background:#f2f6fa;color:#193247}header{background:linear-gradient(120deg,#102b46,#246b91);color:white;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}header h1{margin:0;font-size:24px}header p{margin:4px 0;color:#d8e8f2;font-size:12px}.layout{max-width:1150px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:210px 1fr;gap:18px}nav,.card{background:white;border:1px solid #e1e9f0;border-radius:15px;padding:16px;box-shadow:0 4px 16px #1932470a}nav{height:max-content}nav button{display:block;width:100%;text-align:left;border:0;background:white;padding:12px;border-radius:9px;color:#456075;cursor:pointer}nav button.active,nav button:hover{background:#eaf3f9;color:#1d5d8f;font-weight:bold}h2{margin:0 0 6px}h3{margin:0 0 12px}.muted{color:#718496;font-size:13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:white;padding:17px;border-radius:13px;border:1px solid #e1e9f0}.stat small{color:#718496}.stat b{display:block;font-size:26px;color:#173e5b;margin-top:5px}.card{margin:14px 0}input,select,textarea{width:100%;padding:10px;border:1px solid #d7e1e9;border-radius:8px;margin:5px 0 12px;font:inherit}label{font-size:12px;font-weight:650;color:#586d7e}.btn{background:#1d5d8f;color:white;border:0;border-radius:8px;padding:10px 14px;cursor:pointer}.danger{background:#fff0f0;color:#b43d3d}.page{display:none}.page.show{display:block}table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}td,th{text-align:left;padding:10px 7px;border-bottom:1px solid #e7edf2}th{color:#6e8090}.scroll{overflow:auto}.notice{padding:13px;background:#eff7fb;border-radius:10px;color:#45677e;font-size:13px;line-height:1.5}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.quick button{padding:16px;border:1px solid #e1e9f0;border-radius:10px;background:#f6fafc;text-align:left;cursor:pointer;color:#1d5279}.pill{color:#28704d;background:#e4f5ec;padding:5px 9px;border-radius:20px;font-size:11px}@media(max-width:760px){.layout{grid-template-columns:1fr}nav{display:grid;grid-template-columns:repeat(2,1fr)}nav button{font-size:12px}.stats{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:1fr}}
-</style></head><body>
-<header><div><h1>🎓 QPAN SMART 2026</h1><p>NỀN TẢNG HỖ TRỢ QUẢN LÝ VÀ HỌC TẬP GDQP-AN</p></div><select id="role" style="width:auto"><option>Giảng viên</option><option>Sinh viên</option></select></header>
-<div class="layout"><nav id="nav"><button class="active" data="home">⌂ Tổng quan</button><button data="students">♙ Sinh viên</button><button data="courses">▤ Học phần</button><button data="attendance">✓ Điểm danh</button><button data="materials">▣ Học liệu</button><button data="quiz">✎ Kiểm tra nhanh</button><button data="reports">▥ Báo cáo</button><button data="settings">⚙ Hướng dẫn sửa</button></nav><main>
-<section id="home" class="page show"><h2>Không gian QPAN SMART 2026</h2><p class="muted">Quản lý lớp học, theo dõi chuyên cần và hỗ trợ học tập Giáo dục quốc phòng và an ninh.</p><div class="stats"><div class="stat"><small>Sinh viên</small><b id="ns">0</b></div><div class="stat"><small>Học phần</small><b id="nc">0</b></div><div class="stat"><small>Lượt điểm danh</small><b id="na">0</b></div><div class="stat"><small>Học liệu</small><b id="nm">0</b></div></div><div class="card"><h3>Truy cập nhanh</h3><div class="quick"><button onclick="page('students')">♙<br><b>Quản lý sinh viên</b><p class="muted">Danh sách và thông tin lớp</p></button><button onclick="page('attendance')">✓<br><b>Điểm danh</b><p class="muted">Ghi nhận chuyên cần</p></button><button onclick="page('materials')">▣<br><b>Kho học liệu</b><p class="muted">Tài nguyên học tập</p></button></div></div><div class="card"><h3>Giới thiệu</h3><p class="muted">QPAN SMART hướng tới số hóa một số hoạt động quản lý lớp học GDQP-AN, giúp giảng viên theo dõi thông tin học tập và sinh viên tiếp cận học liệu, nội dung ôn tập thuận tiện hơn.</p><div class="notice">Bản demo hiện lưu dữ liệu trên trình duyệt đang sử dụng; chưa có tài khoản đăng nhập thật hoặc cơ sở dữ liệu dùng chung.</div></div></section>
-<section id="students" class="page"><h2>Quản lý sinh viên</h2><div class="card"><label>Họ và tên</label><input id="sn" placeholder="Nguyễn Văn A"><label>Mã sinh viên</label><input id="sid" placeholder="K76-001"><label>Lớp</label><input id="sc" placeholder="K76A"><label>Email</label><input id="se" placeholder="email@example.com"><button class="btn" onclick="addS()">+ Thêm sinh viên</button><input id="search" placeholder="Tìm kiếm..." oninput="drawS()"><div class="scroll"><table><thead><tr><th>Mã SV</th><th>Họ tên</th><th>Lớp</th><th>Email</th><th></th></tr></thead><tbody id="srows"></tbody></table></div></div></section>
-<section id="courses" class="page"><h2>Quản lý học phần</h2><div class="card"><label>Mã học phần</label><input id="cc" placeholder="QPAN101"><label>Tên học phần</label><input id="cn" placeholder="Đường lối quốc phòng và an ninh"><button class="btn" onclick="addC()">+ Thêm học phần</button><div id="clist"></div></div></section>
-<section id="attendance" class="page"><h2>Điểm danh</h2><div class="card"><label>Sinh viên</label><select id="as"></select><label>Ngày học</label><input id="ad" type="date"><label>Trạng thái</label><select id="ast"><option>Có mặt</option><option>Vắng</option><option>Có phép</option></select><button class="btn" onclick="addA()">Ghi nhận</button><div class="scroll"><table><thead><tr><th>Ngày</th><th>Mã SV</th><th>Trạng thái</th><th></th></tr></thead><tbody id="arows"></tbody></table></div></div></section>
-<section id="materials" class="page"><h2>Kho học liệu</h2><div class="card"><label>Tên tài liệu</label><input id="mn" placeholder="Tên bài giảng / tài liệu"><label>Đường dẫn</label><input id="mu" placeholder="https://..."><label>Mô tả</label><textarea id="md" rows="2"></textarea><button class="btn" onclick="addM()">+ Thêm học liệu</button><div id="mlist"></div></div></section>
-<section id="quiz" class="page"><h2>Kiểm tra nhanh</h2><div class="card"><p>1. GDQP-AN trong nhà trường hướng tới mục tiêu nào?</p><label><input type="radio" name="q" value="1" style="width:auto"> Trang bị kiến thức, kỹ năng và ý thức quốc phòng, an ninh</label><br><label><input type="radio" name="q" value="0" style="width:auto"> Chỉ rèn luyện thể lực</label><br><button class="btn" onclick="document.getElementById('qr').textContent=document.querySelector('input[name=q]:checked')?.value==='1'?'Chính xác!':'Bạn hãy thử lại nhé.'">Nộp bài</button><p id="qr"></p></div></section>
-<section id="reports" class="page"><h2>Báo cáo & thống kê</h2><div class="card"><p id="report"></p><button class="btn" onclick="csv()">Xuất danh sách sinh viên CSV</button></div></section>
-<section id="settings" class="page"><h2>Hướng dẫn chỉnh sửa</h2><div class="card"><ol class="muted"><li>Tải tệp index.html về máy.</li><li>Mở bằng VS Code, Notepad++ hoặc trình soạn thảo HTML để sửa chữ, màu sắc và tính năng.</li><li>Muốn có link công khai: tải index.html lên GitHub, vào Settings → Pages → Deploy from a branch → main / root → Save.</li><li>GitHub sẽ tạo link dạng https://ten-tai-khoan.github.io/qpan-smart/; có thể sửa tiếp trong repository.</li></ol><div class="notice">Chỉ dùng dữ liệu giả khi trình diễn. Không nhập thông tin cá nhân nhạy cảm hoặc hồ sơ sinh viên thật vào bản demo công khai.</div><button class="btn danger" onclick="if(confirm('Xóa dữ liệu demo trên trình duyệt?')){localStorage.clear();location.reload()}">Xóa dữ liệu demo</button></div></section>
-<p class="muted" style="text-align:center">QPAN SMART 2026 · Bản trải nghiệm có thể chỉnh sửa</p></main></div>
-<script
-const get=(k,d)=>JSON.parse(localStorage.getItem('q_'+k)||JSON.stringify(d));let S=get('s',[{id:'K76-001',n:'Nguyễn Minh Anh',c:'K76A',e:'demo@example.com'},{id:'K76-002',n:'Trần Hoàng Nam',c:'K76A',e:''}]),C=get('c',[{code:'QPAN101',name:'Đường lối quốc phòng và an ninh của Đảng'}]),A=get('a',[]),M=get('m',[]);
-const $=id=>document.getElementById(id);function safe(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function save(){[['s',S],['c',C],['a',A],['m',M]].forEach(([k,v])=>localStorage.setItem('q_'+k,JSON.stringify(v)));draw()}
-function page(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('show',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset===id));draw()}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>page(b.getAttribute('data')));
-function addS(){if(!$('sn').value.trim()||!$('sid').value.trim())return alert('Nhập họ tên và mã sinh viên.');if(S.some(x=>x.id===$('sid').value.trim()))return alert('Mã sinh viên đã có.');S.push({id:$('sid').value,n:$('sn').value,c:$('sc').value,e:$('se').value});['sn','sid','sc','se'].forEach(x=>$(x).value='');save()}
-function drawS(){let q=($('search')?.value||'').toLowerCase();$('srows').innerHTML=S.filter(x=>(x.id+x.n+x.c).toLowerCase().includes(q)).map(x=>`<tr><td>${safe(x.id)}</td><td>${safe(x.n)}</td><td>${safe(x.c)}</td><td>${safe(x.e)}</td><td><button class="btn danger" onclick="S=S.filter(y=>y.id!=='${safe(x.id)}');save()">Xóa</button></td></tr>`).join('')}
-function addC(){if(!$('cc').value||!$('cn').value)return alert('Nhập mã và tên học phần.');C.push({code:$('cc').value,name:$('cn').value});$('cc').value=$('cn').value='';save()}
-function addA(){if(!S.length)return alert('Thêm sinh viên trước.');A.push({id:$('as').value,date:$('ad').value||new Date().toISOString().slice(0,10),status:$('ast').value});save()}
-function addM(){if(!$('mn').value)return alert('Nhập tên tài liệu.');M.push({n:$('mn').value,u:$('mu').value||'#',d:$('md').value});['mn','mu','md'].forEach(x=>$(x).value='');save()}
-function draw(){ $('ns').textContent=S.length;$('nc').textContent=C.length;$('na').textContent=A.length;$('nm').textContent=M.length;drawS();$('as').innerHTML=S.map(x=>`<option value="${safe(x.id)}">${safe(x.id)} – ${safe(x.n)}</option>`).join('');$('clist').innerHTML=C.map((x,i)=>`<p>📘 <b>${safe(x.code)}</b> – ${safe(x.name)} <button class="btn danger" onclick="C.splice(${i},1);save()">Xóa</button></p>`).join('');$('arows').innerHTML=A.map((x,i)=>`<tr><td>${safe(x.date)}</td><td>${safe(x.id)}</td><td>${safe(x.status)}</td><td><button class="btn danger" onclick="A.splice(${i},1);save()">Xóa</button></td></tr>`).join('');$('mlist').innerHTML=M.map((x,i)=>`<p>📄 <a href="${safe(x.u)}" target="_blank">${safe(x.n)}</a> – ${safe(x.d)} <button class="btn danger" onclick="M.splice(${i},1);save()">Xóa</button></p>`).join('');$('report').textContent=`Hiện có ${S.length} sinh viên, ${C.length} học phần, ${A.length} lượt điểm danh và ${M.length} học liệu.`}
-function csv(){let t='Ma SV,Ho ten,Lop,Email\n'+S.map(x=>[x.id,x.n,x.c,x.e].map(v=>'"'+String(v||'').replaceAll('"','""')+'"').join(',')).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv;charset=utf-8'}));a.download='sinh-vien.csv';a.click()}
-draw();
+:root{--navy:#123b59;--blue:#17618a;--bg:#f1f5fb;--line:#dce5ef;--muted:#718096}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font:15px system-ui,-apple-system,Segoe UI,sans-serif;color:#20364a}
+header{background:linear-gradient(120deg,#123b59,#24769a);color:white;padding:24px max(20px,calc((100% - 1100px)/2))}
+header h1{margin:0;font-size:27px}
+header p{margin:5px 0 0;color:#dceaf4}
+main{max-width:1100px;margin:22px auto;padding:0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 4px 16px #183b5910}
+h2{margin:0 0 14px;font-size:21px}
+h3{margin:0 0 10px;font-size:17px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+input,select,textarea{font:inherit;padding:11px 12px;border:1px solid #cbd6e2;border-radius:10px;width:100%;background:white;color:#20364a}
+label{display:block;font-weight:600;margin:10px 0 5px}
+button{border:0;border-radius:10px;background:var(--blue);color:white;padding:11px 16px;font:600 14px system-ui;cursor:pointer}
+button.secondary{background:#eaf1f7;color:#24445f}
+button.danger{background:#a93d3d}
+.muted{color:var(--muted)}
+.hidden{display:none!important}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+nav button{background:#e5edf5;color:#29465f}
+nav button.active{background:var(--blue);color:white}
+.stat{padding:16px;border:1px solid var(--line);border-radius:13px;background:#f9fbfd}
+.stat strong{display:block;font-size:27px;color:var(--navy)}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:#53677a;background:#f7f9fc}
+.notice{padding:12px;border-radius:10px;background:#fff6df;color:#76551a;margin:10px 0}
+.ok{background:#e7f7ed;color:#21643b}
+.error{background:#fdecec;color:#8c2929}
+a{color:#12618d;overflow-wrap:anywhere}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+@media(max-width:600px){
+header h1{font-size:23px}
+.card{padding:15px}
+table{font-size:13px}
+th,td{padding:7px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🎓 QPAN SMART 2026</h1>
+<p>Nền tảng hỗ trợ quản lý và học tập Giáo dục quốc phòng và an ninh</p>
+</header>
+
+<main>
+<section id="auth" class="card">
+<h2>Đăng nhập hệ thống</h2>
+<div id="msg" class="notice hidden"></div>
+
+<label>Email</label>
+<input id="email" type="email" autocomplete="username" placeholder="Nhập email đã đăng ký">
+
+<label>Mật khẩu</label>
+<input id="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu">
+
+<div class="row" style="margin-top:14px">
+<button id="loginBtn">Đăng nhập</button>
+<button class="secondary" id="resetBtn">Gửi email đặt lại mật khẩu</button>
+</div>
+
+<p class="muted">Tài khoản giảng viên được quản trị viên cấp quyền. Sinh viên cần được tạo tài khoản và liên kết hồ sơ trong hệ thống.</p>
+</section>
+
+<section id="app" class="hidden">
+<div class="card topline">
+<div>
+<h2 style="margin-bottom:4px">Không gian QPAN SMART</h2>
+<span id="who" class="muted"></span>
+</div>
+<button class="secondary" id="logoutBtn">Đăng xuất</button>
+</div>
+
+<nav id="nav">
+<button class="active" data-page="overview">Tổng quan</button>
+<button data-page="students">Sinh viên</button>
+<button data-page="courses">Học phần</button>
+<button data-page="attendance">Điểm danh</button>
+<button data-page="materials">Học liệu</button>
+<button data-page="quizzes">Kiểm tra</button>
+</nav>
+
+<div id="page-overview" class="page">
+<div class="grid">
+<div class="stat">Sinh viên<strong id="nStudents">0</strong></div>
+<div class="stat">Học phần<strong id="nCourses">0</strong></div>
+<div class="stat">Lượt điểm danh<strong id="nAttendance">0</strong></div>
+<div class="stat">Học liệu<strong id="nMaterials">0</strong></div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Thông tin hệ thống</h3>
+<p class="muted">Dữ liệu được tải từ cơ sở dữ liệu Supabase của dự án.</p>
+<div id="roleInfo"></div>
+</div>
+</div>
+
+<div id="page-students" class="page hidden"></div>
+<div id="page-courses" class="page hidden"></div>
+<div id="page-attendance" class="page hidden"></div>
+<div id="page-materials" class="page hidden"></div>
+<div id="page-quizzes" class="page hidden"></div>
+</section>
+</main>
+
+<script>
 const SUPABASE_URL = 'https://puxbnzlyqcpiybykyvth.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_OBmNWv01WddXBqh5OBME7g_b49xc5nR';
-</script></body></html>
+
+let token=null, user=null, role='student';
+
+const data={
+students:[],
+courses:[],
+attendance:[],
+materials:[],
+quizzes:[]
+};
+
+const $=id=>document.getElementById(id);
+
+function message(text,type='notice'){
+const el=$('msg');
+el.textContent=text;
+el.className='notice '+type;
+}
+
+async function api(path,opts={}){
+const headers={
+'apikey':SUPABASE_KEY,
+'Authorization':'Bearer '+(token||SUPABASE_KEY),
+'Content-Type':'application/json',
+...(opts.headers||{})
+};
+
+const res=await fetch(SUPABASE_URL+'/rest/v1/'+path,{
+...opts,
+headers
+});
+
+const body=await res.text();
+
+if(!res.ok)throw new Error(body||('HTTP '+res.status));
+
+return body?JSON.parse(body):null;
+}
+
+async function auth(path,body){
+const res=await fetch(SUPABASE_URL+'/auth/v1/'+path,{
+method:'POST',
+headers:{
+'apikey':SUPABASE_KEY,
+'Content-Type':'application/json'
+},
+body:JSON.stringify(body)
+});
+
+const out=await res.json();
+
+if(!res.ok)throw new Error(
+out.msg||out.message||out.error_description||'Không thể xác thực'
+);
+
+return out;
+}
+
+$('loginBtn').onclick=async()=>{
+try{
+message('Đang đăng nhập…');
+
+const out=await auth('token?grant_type=password',{
+email:$('email').value.trim(),
+password:$('password').value
+});
+
+token=out.access_token;
+user=out.user;
+
+const p=await api(
+'profiles?select=role&id=eq.'+encodeURIComponent(user.id)
+);
+
+if(!p.length){
+throw new Error('Tài khoản chưa có hồ sơ trong bảng profiles. Hãy liên hệ giảng viên quản trị.');
+}
+
+role=p[0].role||'student';
+
+$('auth').classList.add('hidden');
+$('app').classList.remove('hidden');
+
+$('who').textContent=user.email+' • '+
+(role==='teacher'?'Giảng viên':'Sinh viên');
+
+$('roleInfo').textContent=role==='teacher'
+?'Bạn có quyền quản lý dữ liệu.'
+:'Bạn đang đăng nhập với quyền sinh viên; các thao tác chỉnh sửa bị giới hạn.';
+
+await loadAll();
+
+}catch(e){
+message('Đăng nhập chưa thành công: '+e.message,'error');
+}
+};
+
+$('resetBtn').onclick=async()=>{
+try{
+const email=$('email').value.trim();
+
+if(!email)throw new Error('Nhập email trước.');
+
+const r=await fetch(SUPABASE_URL+'/auth/v1/recover',{
+method:'POST',
+headers:{
+apikey:SUPABASE_KEY,
+'Content-Type':'application/json'
+},
+body:JSON.stringify({email})
+});
+
+if(!r.ok)throw new Error('Không gửi được email đặt lại mật khẩu.');
+
+message('Đã yêu cầu gửi email đặt lại mật khẩu.','ok');
+
+}catch(e){
+message(e.message,'error');
+}
+};
+
+$('logoutBtn').onclick=()=>{
+token=null;
+user=null;
+$('app').classList.add('hidden');
+$('auth').classList.remove('hidden');
+$('password').value='';
+};
+
+document.querySelectorAll('#nav button').forEach(b=>{
+b.onclick=()=>showPage(b.dataset.page);
+});
+
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+$('page-'+id).classList.remove('hidden');
+
+document.querySelectorAll('#nav button').forEach(b=>{
+b.classList.toggle('active',b.dataset.page===id);
+});
+}
+
+async function loadAll(){
+const specs=[
+['students','id,full_name,student_code,class_name,email'],
+['courses','id,name,code,description'],
+['attendance','id,student_id,attended_on,status,note'],
+['materials','id,title,url,description'],
+['quizzes','id,title,url,description']
+];
+
+for(const [t,fields] of specs){
+try{
+data[t]=await api(t+'?select='+fields+'&order=created_at.desc');
+}catch(e){
+data[t]=[];
+console.warn(t,e.message);
+}
+}
+
+$('nStudents').textContent=data.students.length;
+$('nCourses').textContent=data.courses.length;
+$('nAttendance').textContent=data.attendance.length;
+$('nMaterials').textContent=data.materials.length;
+
+renderAll();
+}
+
+function esc(s){
+return String(s??'').replace(/[&<>"']/g,c=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c]));
+}
+
+function canEdit(){
+return role==='teacher';
+}
+
+function table(rows,cols,tableName){
+return '<div style="overflow:auto"><table><thead><tr>'+
+cols.map(c=>'<th>'+c[1]+'</th>').join('')+
+(canEdit()?'<th>Thao tác</th>':'')+
+'</tr></thead><tbody>'+
+rows.map(r=>
+'<tr>'+
+cols.map(c=>'<td>'+(c[2]?c[2](r):esc(r[c[0]]))+'</td>').join('')+
+(canEdit()?'<td><button class="danger" onclick="removeRow(\''+
+tableName+'\',\''+r.id+'\')">Xóa</button></td>':'')+
+'</tr>'
+).join('')+
+'</tbody></table></div>';
+}
+
+function formHtml(tableName,fields){
+if(!canEdit()){
+return '<p class="muted">Bạn có thể xem dữ liệu. Chỉ giảng viên mới được thêm hoặc chỉnh sửa.</p>';
+}
+
+return '<form onsubmit="addRow(event,\''+tableName+'\')">'+
+'<div class="grid">'+
+fields.map(f=>
+'<div><label>'+f[1]+'</label><input name="'+f[0]+'" '+
+(f[2]?'required':'')+' placeholder="'+f[1]+'"></div>'
+).join('')+
+'</div><button style="margin-top:12px">Thêm mới</button></form>';
+}
+
+function renderAll(){
+
+$('page-students').innerHTML=
+'<div class="card"><h2>Quản lý sinh viên</h2>'+
+formHtml('students',[
+['full_name','Họ và tên',1],
+['student_code','Mã sinh viên',1],
+['class_name','Lớp',1],
+['email','Email',0]
+])+
+table(data.students,[
+['student_code','Mã SV'],
+['full_name','Họ và tên'],
+['class_name','Lớp'],
+['email','Email']
+],'students')+
+'</div>';
+
+$('page-courses').innerHTML=
+'<div class="card"><h2>Quản lý học phần</h2>'+
+formHtml('courses',[
+['name','Tên học phần',1],
+['code','Mã học phần',0],
+['description','Mô tả',0]
+])+
+table(data.courses,[
+['code','Mã học phần'],
+['name','Tên học phần'],
+['description','Mô tả']
+],'courses')+
+'</div>';
+
+$('page-attendance').innerHTML=
+'<div class="card"><h2>Điểm danh</h2>'+
+(canEdit()?
+'<form onsubmit="addAttendance(event)">'+
+'<label>Sinh viên</label>'+
+'<select name="student_id" required>'+
+data.students.map(s=>
+'<option value="'+s.id+'">'+esc(s.full_name)+' — '+esc(s.student_code)+'</option>'
+).join('')+
+'</select>'+
+'<div class="grid">'+
+'<div><label>Ngày</label><input name="attended_on" type="date" value="'+new Date().toISOString().slice(0,10)+'" required></div>'+
+'<div><label>Trạng thái</label><select name="status"><option>Có mặt</option><option>Vắng</option><option>Muộn</option></select></div>'+
+'</div>'+
+'<button style="margin-top:12px">Lưu điểm danh</button>'+
+'</form>'
+:
+'<p class="muted">Chỉ giảng viên được tạo và sửa điểm danh.</p>'
+)+
+table(data.attendance,[
+['student_id','Sinh viên',r=>esc(data.students.find(s=>s.id===r.student_id)?.full_name||'')],
+['attended_on','Ngày'],
+['status','Trạng thái'],
+['note','Ghi chú']
+],'attendance')+
+'</div>';
+
+for(const t of ['materials','quizzes']){
+$('page-'+t).innerHTML=
+'<div class="card"><h2>'+
+(t==='materials'?'Kho học liệu':'Kiểm tra nhanh')+
+'</h2>'+
+formHtml(t,[
+['title','Tiêu đề',1],
+['url','Đường dẫn',1],
+['description','Mô tả',0]
+])+
+table(data[t],[
+['title','Tiêu đề'],
+['url','Liên kết',r=>'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">Mở tài liệu</a>'],
+['description','Mô tả']
+],t)+
+'</div>';
+}
+}
+
+window.addRow=async(e,t)=>{
+e.preventDefault();
+
+try{
+const obj=Object.fromEntries(new FormData(e.target).entries());
+
+await api(t,{
+method:'POST',
+headers:{Prefer:'return=minimal'},
+body:JSON.stringify(obj)
+});
+
+await loadAll();
+
+}catch(err){
+alert('Không lưu được: '+err.message);
+}
+};
+
+window.addAttendance=async e=>{
+e.preventDefault();
+
+try{
+const obj=Object.fromEntries(new FormData(e.target).entries());
+
+await api('attendance',{
+method:'POST',
+headers:{Prefer:'return=minimal'},
+body:JSON.stringify(obj)
+});
+
+await loadAll();
+
+}catch(err){
+alert('Không lưu được: '+err.message);
+}
+};
+
+window.removeRow=async(t,id)=>{
+if(!canEdit()||!confirm('Xóa mục này?'))return;
+
+try{
+await api(t+'?id=eq.'+encodeURIComponent(id),{
+method:'DELETE'
+});
+
+await loadAll();
+
+}catch(e){
+alert('Không xóa được: '+e.message);
+}
+};
+</script>
+</body>
+</html>
