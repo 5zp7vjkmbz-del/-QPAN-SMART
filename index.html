@@ -13,7 +13,7 @@
 <section id="reports" class="page"><h2>Báo cáo & thống kê</h2><div class="card"><p id="report"></p><button class="btn" onclick="csv()">Xuất danh sách sinh viên CSV</button></div></section>
 <section id="settings" class="page"><h2>Hướng dẫn chỉnh sửa</h2><div class="card"><ol class="muted"><li>Tải tệp index.html về máy.</li><li>Mở bằng VS Code, Notepad++ hoặc trình soạn thảo HTML để sửa chữ, màu sắc và tính năng.</li><li>Muốn có link công khai: tải index.html lên GitHub, vào Settings → Pages → Deploy from a branch → main / root → Save.</li><li>GitHub sẽ tạo link dạng https://ten-tai-khoan.github.io/qpan-smart/; có thể sửa tiếp trong repository.</li></ol><div class="notice">Chỉ dùng dữ liệu giả khi trình diễn. Không nhập thông tin cá nhân nhạy cảm hoặc hồ sơ sinh viên thật vào bản demo công khai.</div><button class="btn danger" onclick="if(confirm('Xóa dữ liệu demo trên trình duyệt?')){localStorage.clear();location.reload()}">Xóa dữ liệu demo</button></div></section>
 <p class="muted" style="text-align:center">QPAN SMART 2026 · Bản trải nghiệm có thể chỉnh sửa</p></main></div>
-<script>
+<script
 const get=(k,d)=>JSON.parse(localStorage.getItem('q_'+k)||JSON.stringify(d));let S=get('s',[{id:'K76-001',n:'Nguyễn Minh Anh',c:'K76A',e:'demo@example.com'},{id:'K76-002',n:'Trần Hoàng Nam',c:'K76A',e:''}]),C=get('c',[{code:'QPAN101',name:'Đường lối quốc phòng và an ninh của Đảng'}]),A=get('a',[]),M=get('m',[]);
 const $=id=>document.getElementById(id);function safe(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function save(){[['s',S],['c',C],['a',A],['m',M]].forEach(([k,v])=>localStorage.setItem('q_'+k,JSON.stringify(v)));draw()}
